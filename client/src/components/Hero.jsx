@@ -76,7 +76,7 @@ export default function Hero() {
                                 Contact Me
                             </button>
                             <a
-                                href="/cv.pdf"
+                                href="/CV- Mostafa khaled.pdf"
                                 download
                                 className="px-6 py-3 border border-zinc-700 hover:border-orange-500/50 text-zinc-400 hover:text-white font-semibold rounded-xl transition-all duration-200 hover:scale-105 flex items-center gap-2"
                             >

@@ -93,7 +93,7 @@ export default function Skills() {
                 <div className="mt-12 text-center">
                     <p className="text-zinc-500 text-sm mb-4">Also familiar with:</p>
                     <div className="flex flex-wrap justify-center gap-3">
-                        {['JavaScript (ES6+)', 'Python', 'JWT Auth', 'WebSockets', 'Redis', 'Nginx', 'Linux', 'Mongoose'].map(tech => (
+                        {['JavaScript (ES6+)', 'Python', 'JWT Auth', 'Mongoose'].map(tech => (
                             <span
                                 key={tech}
                                 className="px-3 py-1.5 glass-card text-zinc-400 font-mono text-xs rounded-full hover:text-orange-400 hover:border-orange-500/30 transition-colors cursor-default"
