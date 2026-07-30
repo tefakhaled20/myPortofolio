@@ -38,29 +38,30 @@ const projects = [
         tags: ['React', 'Node.js', 'Express', 'Tailwind'],
         github: 'https://github.com/tefakhaled20/motion-graphic-portofolio',
         live: "https://motion-graphic-portofolio.vercel.app/",
-        icon: '⚡',
+        icon: '🎬',
         featured: false,
     },
     {
-        title: 'Volunteer Management Backend',
+        title: 'Tic-Tac-Toe Game',
         description:
-            'Complete backend system for a volunteer management mobile app. JWT auth, role-based access control (RBAC), task management, location tracking, and announcements API.',
-        tags: ['Node.js', 'Express', 'MongoDB', 'Mongoose', 'JWT'],
-        github: 'https://github.com',
-        live: null,
-        icon: '🤝',
+            'A simple tic-tac-toe game built with HTML, CSS, and JavaScript.',
+        tags: ['HTML', 'CSS', 'JavaScript'],
+        github: 'https://github.com/tefakhaled20/tic-tac-toe',
+        live: "https://tic-tac-toe-nu-virid.vercel.app/",
+        icon: '❌⭕',
         featured: false,
     },
     {
-        title: 'REST API Boilerplate',
+        title: 'MyBlog',
         description:
-            'A production-ready REST API boilerplate with authentication, rate limiting, Swagger docs, environment management, and comprehensive error handling out of the box.',
-        tags: ['Node.js', 'Express', 'PostgreSQL', 'Swagger', 'Docker'],
-        github: 'https://github.com',
+            'A simple blog built with HTML, CSS, and JavaScript.',
+        tags: ['HTML', 'CSS', 'JavaScript'],
+        github: 'https://github.com/tefakhaled20/myBlog',
         live: null,
-        icon: '🏗️',
+        icon: '📝',
         featured: false,
     },
+
 ]
 
 function ProjectCard({ project, index }) {
@@ -152,7 +153,7 @@ export default function Projects() {
 
                 <div className="text-center mt-12">
                     <a
-                        href="https://github.com"
+                        href="https://github.com/tefakhaled20"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-6 py-3 glass-card hover:border-orange-500/40 text-zinc-400 hover:text-white font-semibold rounded-xl transition-all duration-200 hover:scale-105"

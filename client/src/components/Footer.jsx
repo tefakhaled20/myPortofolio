@@ -59,7 +59,7 @@ export default function Footer() {
                 </div>
 
                 <div className="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-zinc-600 text-xs">
-                    <p>© {year} Alex Rivera. All rights reserved.</p>
+                    <p>© {year} Mostafa Khaled. All rights reserved.</p>
                     <p className="font-mono">Built with React · Node.js · Tailwind CSS</p>
                 </div>
             </div>

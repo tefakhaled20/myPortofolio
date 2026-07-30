@@ -1,91 +1,109 @@
-import { useState, useEffect } from 'react'
+import useScrollReveal from '../hooks/useScrollReveal'
 
-const navLinks = [
-    { id: 'about', label: 'About' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'contact', label: 'Contact' },
+const skillGroups = [
+    {
+        category: 'Backend',
+        icon: '⚙️',
+        color: 'from-orange-500/20 to-orange-600/5',
+        border: 'border-orange-500/20',
+        skills: [
+            { name: 'Node.js', level: 80 },
+            { name: 'Express.js', level: 82 },
+            { name: 'REST APIs', level: 85 },
+            { name: 'Database Design', level: 75 },
+        ],
+    },
+    {
+        category: 'Databases',
+        icon: '🗄️',
+        color: 'from-blue-500/20 to-blue-600/5',
+        border: 'border-blue-500/20',
+        skills: [
+            { name: 'MongoDB', level: 78 },
+            { name: 'PostgreSQL', level: 72 },
+        ],
+    },
+    {
+        category: 'Frontend',
+        icon: '🛠️',
+        color: 'from-green-500/20 to-green-600/5',
+        border: 'border-green-500/20',
+        skills: [
+            { name: 'React', level: 85 },
+            { name: 'HTML', level: 100 },
+            { name: 'JavaScript', level: 90 },
+            { name: 'Tailwind Css', level: 90 },
+        ],
+    },
 ]
 
-export default function Navbar() {
-    const [isOpen, setIsOpen] = useState(false)
-    const [scrolled, setScrolled] = useState(false)
-    const [active, setActive] = useState('')
+function SkillBar({ name, level, delay }) {
+    return (
+        <div className="space-y-1.5" style={{ animationDelay: `${delay}ms` }}>
+            <div className="flex justify-between text-sm">
+                <span className="text-zinc-300 font-medium">{name}</span>
+                <span className="text-zinc-500 font-mono">{level}%</span>
+            </div>
+            <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                <div
+                    className="h-full bg-gradient-to-r from-orange-500 to-orange-400 rounded-full transition-all duration-1000 ease-out"
+                    style={{ width: `${level}%` }}
+                />
+            </div>
+        </div>
+    )
+}
 
-    useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 50)
-        window.addEventListener('scroll', onScroll)
-        return () => window.removeEventListener('scroll', onScroll)
-    }, [])
-
-    const scrollTo = (id) => {
-        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-        setActive(id)
-        setIsOpen(false)
-    }
+export default function Skills() {
+    const ref = useScrollReveal()
 
     return (
-        <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/90 backdrop-blur-md border-b border-white/5' : 'bg-transparent'
-            }`}>
-            <div className="container-width flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
-                {/* Logo */}
-                <button onClick={() => scrollTo('hero')} className="font-mono text-xl font-bold gradient-text">
-                    &lt;DevPortfolio /&gt;
-                </button>
-
-                {/* Desktop links */}
-                <div className="hidden md:flex items-center gap-8">
-                    {navLinks.map(link => (
-                        <button
-                            key={link.id}
-                            onClick={() => scrollTo(link.id)}
-                            className={`text-sm font-medium transition-colors duration-200 hover:text-orange-500 ${active === link.id ? 'text-orange-500' : 'text-zinc-400'
-                                }`}
-                        >
-                            {link.label}
-                        </button>
-                    ))}
-                    <button
-                        onClick={() => scrollTo('contact')}
-                        className="px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold rounded-lg transition-colors duration-200"
-                    >
-                        Hire Me
-                    </button>
+        <section id="skills" className="section-padding">
+            <div className="container-width">
+                <div className="text-center mb-16">
+                    <p className="text-orange-500 font-mono text-sm tracking-widest uppercase mb-2">Skills</p>
+                    <h2 className="text-4xl font-extrabold">
+                        My <span className="gradient-text">Tech Stack</span>
+                    </h2>
+                    <p className="text-zinc-500 mt-3 max-w-md mx-auto">
+                        Technologies I work with to build scalable backend systems and automation tools.
+                    </p>
                 </div>
 
-                {/* Hamburger */}
-                <button
-                    className="md:hidden flex flex-col gap-1.5 p-2"
-                    onClick={() => setIsOpen(!isOpen)}
-                    aria-label="Toggle menu"
-                >
-                    <span className={`block w-6 h-0.5 bg-white transition-transform duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`} />
-                    <span className={`block w-6 h-0.5 bg-white transition-opacity duration-300 ${isOpen ? 'opacity-0' : ''}`} />
-                    <span className={`block w-6 h-0.5 bg-white transition-transform duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-                </button>
-            </div>
-
-            {/* Mobile menu */}
-            <div className={`md:hidden transition-all duration-300 overflow-hidden ${isOpen ? 'max-h-80' : 'max-h-0'}`}>
-                <div className="bg-black/95 backdrop-blur-md border-b border-white/5 px-4 py-4 flex flex-col gap-4">
-                    {navLinks.map(link => (
-                        <button
-                            key={link.id}
-                            onClick={() => scrollTo(link.id)}
-                            className="text-base font-medium text-zinc-400 hover:text-orange-500 text-left transition-colors"
+                <div ref={ref} className="grid md:grid-cols-3 gap-6 opacity-0 animate-fade-in-up">
+                    {skillGroups.map(group => (
+                        <div
+                            key={group.category}
+                            className={`glass-card rounded-2xl p-6 border ${group.border} bg-gradient-to-br ${group.color} hover:scale-105 transition-transform duration-300 orange-glow-hover`}
                         >
-                            {link.label}
-                        </button>
+                            <div className="flex items-center gap-3 mb-6">
+                                <span className="text-2xl">{group.icon}</span>
+                                <h3 className="text-lg font-bold">{group.category}</h3>
+                            </div>
+                            <div className="space-y-4">
+                                {group.skills.map((skill, i) => (
+                                    <SkillBar key={skill.name} {...skill} delay={i * 100} />
+                                ))}
+                            </div>
+                        </div>
                     ))}
-                    <button
-                        onClick={() => scrollTo('contact')}
-                        className="px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold rounded-lg w-fit transition-colors"
-                    >
-                        Hire Me
-                    </button>
+                </div>
+
+                {/* Extra badges row */}
+                <div className="mt-12 text-center">
+                    <p className="text-zinc-500 text-sm mb-4">Also familiar with:</p>
+                    <div className="flex flex-wrap justify-center gap-3">
+                        {['JavaScript (ES6+)', 'Python', 'JWT Auth', 'Mongoose'].map(tech => (
+                            <span
+                                key={tech}
+                                className="px-3 py-1.5 glass-card text-zinc-400 font-mono text-xs rounded-full hover:text-orange-400 hover:border-orange-500/30 transition-colors cursor-default"
+                            >
+                                {tech}
+                            </span>
+                        ))}
+                    </div>
                 </div>
             </div>
-        </nav>
+        </section>
     )
 }

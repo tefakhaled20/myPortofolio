@@ -24,15 +24,15 @@ const skillGroups = [
         ],
     },
     {
-        category: 'Tools & DevOps',
+        category: 'Frontend',
         icon: '🛠️',
         color: 'from-green-500/20 to-green-600/5',
         border: 'border-green-500/20',
         skills: [
-            { name: 'Git', level: 85 },
-            { name: 'Docker', level: 68 },
-            { name: 'n8n', level: 75 },
-            { name: 'Postman', level: 90 },
+            { name: 'React', level: 85 },
+            { name: 'Html', level: 100 },
+            { name: 'Javascript', level: 90 },
+            { name: 'Tailwind Css', level: 90 },
         ],
     },
 ]
